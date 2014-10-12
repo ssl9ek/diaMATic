@@ -50,6 +50,15 @@ angular.module('calendar', ['ionic','ui.calendar'])
 		    }
 		}
 	    })
+	    .state('tab.about', {
+		url: '/about',
+		views: {
+		    'tab-about': {
+			template: function() { return document.getElementById('tab-about.html').innerHTML; },
+			controller: 'Ctrl'
+		    }
+		}
+	    })
 	$urlRouterProvider.otherwise('/tab/calendar');
     })
 
@@ -61,7 +70,7 @@ angular.module('calendar', ['ionic','ui.calendar'])
 
 	var eventos =[
             {id: 123,title: ':)',start: new Date(y, m, 1),url: '#/event'},
-            {id: 124,title: ':( :( :( :(',start: new Date(y, m, d - 5),url: '#/event'},
+            {id: 124,title: ':(',start: new Date(y, m, d - 5),url: '#/event'},
             {id: 125,title: ':)',start: new Date(y, m, d - 3),url: '#/event'},
             {id: 126,title: ':) :)',start: new Date(y, m, d - 2),url: '#/event'},
             {id: 127,title: ':)',start: new Date(y, m, d - 1),url: '#/event'},
@@ -102,7 +111,7 @@ angular.module('calendar', ['ionic','ui.calendar'])
     })
 
     .controller('Ctrl', function ($scope,$ionicSlideBoxDelegate, $timeout, $ionicPopup) {
-	$scope.notes = window.localStorage['notes'] && JSON.parse(window.localStorage['notes'])||[];
+	$scope.notes = [];//window.localStorage['notes'] && JSON.parse(window.localStorage['notes'])||[];
 	var currDate = new Date();
 	console.log(currDate);
 	var temp = {'time': currDate.getTime(), 'date': currDate.toDateString(), 'text':'I bumped my foot in the door but I didn\'t feel anything'};

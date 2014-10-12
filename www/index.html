@@ -40,6 +40,10 @@
       <ion-tab title="Export" icon="icon ion-android-download" href="#/tab/export" >
         <ion-nav-view name="tab-export"> </ion-nav-view>
       </ion-tab>
+      <!-- About Tab -->
+      <ion-tab title="About" icon="icon ion-star" href="#/tab/about" >
+        <ion-nav-view name="tab-about"> </ion-nav-view>
+      </ion-tab>
     </ion-tabs>
   </script>
 
@@ -68,15 +72,16 @@
 
   <script id="event.html" type="text/ng-template">
     <ion-view>
-
-    <div class="bar bar-header bar-royal">
-      <button class="button button-icon icon ion-reply"></button>
-      <div class="h1 title">October 12</div>
-    </div>
-    <ion-content>
-      <div>hi</div>
-    </ion-content>
-      </ion-view>
+      <ion-header-bar class="bar bar-header bar-royal">
+        <a class="button button-icon icon ion-reply" href="/#/tab/calendar"></a>
+        <h1 class="title">October 7</h1>
+      </ion-header-bar>
+      <ion-content>
+        <ion-slide>
+          <img alt="diametric" src="img/diametric.png" style="display: block; margin-left: auto; margin-right: auto;">
+        </ion-slide>
+      </ion-content>
+    </ion-view>
   </script>
 
   <script id="tab-notes.html">
@@ -97,10 +102,10 @@
 
   <script id="tab-weight.html">
     <ion-view>
-      <ion-header-bar class="bar-royal">
+      <ion-header-bar class="bar bar-header bar-royal">
         <h1 class="title">Weight</h1>
       </ion-header-bar>     
-      <ion-content class="padding" scroll="true">
+      <ion-content class="padding">
         <ion-slide-box id ="box" show-pager="false" on-slide-changed="onSlideChanged(index)">
           <ion-slide>
             <img alt="october" src="img/october.png" style="display: block; margin-left: auto; margin-right: auto;">
@@ -115,12 +120,25 @@
 
   <script id="tab-export.html">
     <ion-view title="Export">
+      <ion-header-bar class="bar-royal">
+        <h1 class="title">Export</h1>
+      </ion-header-bar>
       <ion-content class="padding">
         <h1>Export</h1>
       </ion-content>
     </ion-view>
   </script>
 
+  <script id="tab-about.html">
+    <ion-view title="About">
+      <ion-header-bar class="bar-royal">
+        <h1 class="title">About</h1>
+      </ion-header-bar>
+      <ion-content class="padding">
+        <div>Diabetic Blood Pulse Index (DBPI) is determined by blood pulse in the foot. Doppler ultrasonography detects triphasic, biphasic, or monophasic frequency readings corresponding to normal, mild, and severe grades of vasculopathy. The temperature at the site of the reading is also given in addition to the site number. These variables are normalized and will provide a risk factor for diabetic ulceration. DBPI ranges from 1-10 where 1 is low risk and 10 is high risk.</div>
+      </ion-content>
+    </ion-view>
+  </script>
 	
   </body>
 </html>
