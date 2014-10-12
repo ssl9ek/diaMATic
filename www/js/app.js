@@ -1,22 +1,51 @@
 angular.module('calendar', ['ionic','ui.calendar'])
 
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function($stateProvider, $urlRouterProvider) {
+	$stateProvider
 
-        $stateProvider
-
-            .state('calendar', {
-                url: '/',
-                templateUrl: 'calendar.html',
-                controller: 'CalendarCtlr'
-            })
-
-            .state('event', {
-                url: '/event',
-                templateUrl: 'event.html',
-            });
-
-       $urlRouterProvider.otherwise('/');
-
+	// setup an abstract state for the tabs directive
+	    .state('tab', {
+		url: "/tab",
+		abstract: true,
+		template: function() { return document.getElementById('tab.html').innerHTML; },
+	    })
+	    .state('tab.calendar', {
+		url: '/calendar',
+		views: {
+		    'tab-calendar': {
+			template: function() { return document.getElementById('tab-calendar.html').innerHTML; },
+			controller: 'CalendarCtrl'
+		    }
+		}
+	    })
+	    .state('tab.notes', {
+		url: '/notes',
+		views: {
+		    'tab-notes': {
+			template: function() { return document.getElementById('tab-notes.html').innerHTML; },
+			controller: 'Ctrl'
+		    }
+		}
+	    })
+	    .state('tab.weight', {
+		url: '/weight',
+		views: {
+		    'tab-weight': {
+			template: function() { return document.getElementById('tab-weight.html').innerHTML; },
+			controller: 'Ctrl'
+		    }
+		}
+	    })
+	    .state('tab.export', {
+		url: '/export',
+		views: {
+		    'tab-export': {
+			template: function() { return document.getElementById('tab-export.html').innerHTML; },
+			controller: 'Ctrl'
+		    }
+		}
+	    })
+	$urlRouterProvider.otherwise('/tab/calendar');
     })
 
     .factory('CalendarService', function($q) {
@@ -44,7 +73,7 @@ angular.module('calendar', ['ionic','ui.calendar'])
       
   })
 
-  .controller('CalendarCtlr', function ($scope,$ionicSlideBoxDelegate,CalendarService) {
+  .controller('CalendarCtrl', function ($scope,$ionicSlideBoxDelegate,CalendarService) {
 
     $scope.uiConfig = {
       calendar:{
