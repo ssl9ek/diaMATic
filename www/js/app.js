@@ -139,6 +139,8 @@ angular.module('calendar', ['ionic','ui.calendar'])
     })
 
     .controller('Ctrl', function ($scope,$ionicSlideBoxDelegate, $timeout, $ionicPopup) {
+	console.log($ionicSlideBoxDelegate.$getByHandle('weight').slidesCount('weight'));
+	$ionicSlideBoxDelegate.next();
 
 	window.localStorage['notes'] = '[{"time":1413122317774,"date":"Sun Oct 12 2014","text":"I bumped my foot in the door but I didn\'t feel anything"},{"time":1413035819938,"date":"Sat Oct 11 2014","text":"Feeling pretty great today!"},{"time":1412909321112,"date":"Thu Oct 09 2014","text":"My glucose level was a little high today"},{"time":1412722642790,"date":"Tue Oct 07 2014","text":"I had a hypoglycemia attack today. Blacked out for about 5 minutes"},{"time":1412695300034,"date":"Tue Oct 07 2014","text":"I walked around for 5 hours today"},{"time":1412657736322,"date":"Tue Oct 07 2014","text":"I walked barefoot in the grass. I know I shouldn\'t but it was fun"}]';
 	$scope.notes = window.localStorage['notes'] && JSON.parse(window.localStorage['notes']) || [];	
