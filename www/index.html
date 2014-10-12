@@ -3,16 +3,16 @@
     <meta charset="utf-8">  
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>diaMATic</title>
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet" >
-    <link href="css/style.css" rel="stylesheet" >
+    <link  href="lib/ionic/css/ionic.css" rel="stylesheet" >
+    <link  href="css/style.css" rel="stylesheet" >
     <script src="lib/ionic/js/ionic.bundle.js" > </script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js" > </script>
     <script src="js/app.js" > </script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.css" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.js"></script>
-    <script src="http://rawgit.com/angular-ui/ui-calendar/master/src/calendar.js"></script>
+    <link  href="css/fullcalendar.css" rel="stylesheet">
+    <script src="js/jquery-v1.11.1.js"></script>
+    <script src="js/fullcalendar.min.js"></script>
+    <script src="js/calendar.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   </head>
 
@@ -49,23 +49,8 @@
 
   <script id="tab-calendar.html" type="text/ng-template">
     <ion-view>
-      <ion-header-bar class="bar-royal">
-        <button class="button button-icon icon ion-arrow-left-c"></button>
-        <h1 class="title">October</h1>
-        <button class="button button-icon icon ion-arrow-right-c"></button>
-      </ion-header-bar>
-      <ion-content padding="true" scroll="true"> 
-        <ion-slide-box id ="box" show-pager="false" on-slide-changed="onSlideChanged(index)">
-          <ion-slide>
-            <div id="calendar1" class="calendar" calendar="calendar1" ng-model="eventSources" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
-          </ion-slide>
-          <ion-slide>
-            <div id="calendar2" class="calendar" calendar="calendar2" ng-model="eventSources" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
-          </ion-slide>
-          <ion-slide>
-            <div id="calendar3" class="calendar" calendar="calendar3" ng-model="eventSources" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
-          </ion-slide>
-        </ion-slide-box>
+      <ion-content padding="true">
+        <div id="calendar1" class="calendar" calendar="calendar1" ng-model="eventSources" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
       </ion-content>
     </ion-view>
   </script>
@@ -73,14 +58,14 @@
   <script id="event.html" type="text/ng-template">
     <ion-view>
       <ion-header-bar class="bar bar-header bar-royal">
-        <a class="button button-icon icon ion-reply" href="/#/tab/calendar"></a>
+        <button class="button button-icon icon ion-reply" ng-click="backToCalendar()"></button>
         <h1 class="title">October 7</h1>
       </ion-header-bar>
       <ion-content>
-        <ion-slide>
+	<br>
+	<h4>Weight: 138 lbs</h4>
           <img alt="diametric" src="img/diametric.png" width="100%"
 	        style="display: block; margin-left: auto; margin-right: auto;"/>
-        </ion-slide>
       </ion-content>
     </ion-view>
   </script>
@@ -136,7 +121,16 @@
         <h1 class="title">About</h1>
       </ion-header-bar>
       <ion-content class="padding">
-        <div>Diabetic Blood Pulse Index (DBPI) is determined by blood pulse in the foot. Doppler ultrasonography detects triphasic, biphasic, or monophasic frequency readings corresponding to normal, mild, and severe grades of vasculopathy. The temperature at the site of the reading is also given in addition to the site number. These variables are normalized and will provide a risk factor for diabetic ulceration. DBPI ranges from 1-10 where 1 is low risk and 10 is high risk.</div>
+        <div>Diabetic Blood Pulse Index (DBPI) is determined by blood
+    pulse in the foot. Doppler ultrasonography detects triphasic,
+    biphasic, or monophasic frequency readings corresponding to
+    normal, mild, and severe grades of vasculopathy. The temperature
+    at the site of the reading is also given in addition to the site
+    number. These variables are normalized and will provide a risk
+    factor for diabetic ulceration. DBPI ranges from 1-10 where 1 is
+    low risk and 10 is high risk.</div><br>
+        <img alt="diametric" src="img/diaMAT.png" width="100%"
+             style="display: block; margin-left: auto; margin-right: auto;"/>
       </ion-content>
     </ion-view>
   </script>

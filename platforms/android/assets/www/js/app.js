@@ -69,11 +69,11 @@ angular.module('calendar', ['ionic','ui.calendar'])
 	var y = date.getFullYear();
 
 	var eventos =[
-            {id: 123,title: ':)',start: new Date(y, m, 1),url: '#/event'},
-            {id: 124,title: ':(',start: new Date(y, m, d - 5),url: '#/event'},
-            {id: 125,title: ':)',start: new Date(y, m, d - 3),url: '#/event'},
-            {id: 126,title: ':) :)',start: new Date(y, m, d - 2),url: '#/event'},
-            {id: 127,title: ':)',start: new Date(y, m, d - 1),url: '#/event'},
+            {id: 123,title: ':)',start: new Date(y, m, 1), url: '#/event'},
+            {id: 124,title: ':(',start: new Date(y, m, d - 5), url: '#/event'},
+            {id: 125,title: ':)',start: new Date(y, m, d - 3), url: '#/event'},
+            {id: 126,title: ':) :)',start: new Date(y, m, d - 2), url: '#/event'},
+            {id: 127,title: ':)',start: new Date(y, m, d - 1), url: '#/event'},
 	];
 
 	return{
@@ -86,13 +86,42 @@ angular.module('calendar', ['ionic','ui.calendar'])
 	
     })
 
-    .controller('CalendarCtrl', function ($scope,$ionicSlideBoxDelegate,CalendarService) {
+    .controller('CalendarCtrl', function ($scope,$ionicSlideBoxDelegate,CalendarService, $ionicModal, $state) {
+
+	$scope.backToCalendar = function () {
+	    //$state.go('tab.calendar');
+	    window.location.href = '#/tab/calendar';
+	}
+
+	// Event Modal **************************************************************************
+	
+	/*$ionicModal.fromTemplateUrl('event.html', function(modal) {
+	    $scope.eventModal = modal;
+	}, {
+	    scope: $scope
+	});
+	
+	$scope.currentEvent={};
+
+	$scope.showEventModal = function() {
+	    $scope.eventModal.show();
+	};
+	
+	$scope.closeEventModal = function(task) {
+	    $scope.eventModal.hide();
+	}*/
+
 
 	$scope.uiConfig = {
 	    calendar:{
-		height: 650,
-		header:true,
-		firstDay:1,
+		height: 550,
+		editable: false,
+		header: {
+		    left: 'title',
+		    center: '',
+		    right: 'prev,next'
+		},
+		eventClick: function(){console.log('clicked');}
 	    }
 	};
 
@@ -110,45 +139,13 @@ angular.module('calendar', ['ionic','ui.calendar'])
     })
 
     .controller('Ctrl', function ($scope,$ionicSlideBoxDelegate, $timeout, $ionicPopup) {
-	$scope.notes = [];//window.localStorage['notes'] && JSON.parse(window.localStorage['notes'])||[];
-	var currDate = new Date();
-	console.log(currDate);
-	var temp = {'time': currDate.getTime(), 'date': currDate.toDateString(), 'text':'I bumped my foot in the door but I didn\'t feel anything'};
-	console.log(temp);
-	$scope.notes.push(temp); 
-	var currDate = new Date(currDate.getTime()-86497836);
-	temp = {'time':currDate.getTime(),'date':currDate.toDateString(),'text':'Feeling pretty great today!'};
-	$scope.notes.push(temp); 
-	var currDate = new Date(currDate.getTime()-126498826);
-	temp = {'time':currDate.getTime(),'date':currDate.toDateString(),'text':'My glucose level was a little high today'};
-	$scope.notes.push(temp); 
-	var currDate = new Date(currDate.getTime()-186678322);
-	temp = {'time':currDate.getTime(),'date':currDate.toDateString(),'text':'I had a hypoglycemia attack today. Blacked out for about 5 minutes'};
-	$scope.notes.push(temp); 
-	var currDate = new Date(currDate.getTime()-27342756);
-	temp = {'time':currDate.getTime(),'date':currDate.toDateString(),'text':'I walked around for 5 hours today'};
-	$scope.notes.push(temp); 
-	var currDate = new Date(currDate.getTime()-37563712);
-	temp = {'time':currDate.getTime(),'date':currDate.toDateString(),'text':'I walked barefoot in the grass. I know I shouldn\'t but it was fun'};
-	$scope.notes.push(temp);
 
-	console.log($scope.notes);
-	//$scope.name = "Panda";
-	
-	/*$timeout(function() {
-	    console.log('lol hi');
-	    google.setOnLoadCallback(function() {
-		angular.bootstrap(document.body, ['myApp']);
-	    });
-	    //google.load('visualization', '1', {packages: ['corechart']});
-	}, 2000)*/
+	window.localStorage['notes'] = '[{"time":1413122317774,"date":"Sun Oct 12 2014","text":"I bumped my foot in the door but I didn\'t feel anything"},{"time":1413035819938,"date":"Sat Oct 11 2014","text":"Feeling pretty great today!"},{"time":1412909321112,"date":"Thu Oct 09 2014","text":"My glucose level was a little high today"},{"time":1412722642790,"date":"Tue Oct 07 2014","text":"I had a hypoglycemia attack today. Blacked out for about 5 minutes"},{"time":1412695300034,"date":"Tue Oct 07 2014","text":"I walked around for 5 hours today"},{"time":1412657736322,"date":"Tue Oct 07 2014","text":"I walked barefoot in the grass. I know I shouldn\'t but it was fun"}]';
+	$scope.notes = window.localStorage['notes'] && JSON.parse(window.localStorage['notes']) || [];	
 
-
-	// Triggered on a button click, or some other target
 	$scope.newNote = function() {
 	    $scope.note = {};
 
-	    // An elaborate, custom popup
 	    var myPopup = $ionicPopup.show({
 		template: '<input type="text" ng-model="note.res">',
 		title: 'Have any odd details to share?',
